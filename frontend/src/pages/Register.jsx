@@ -1,3 +1,5 @@
+// frontend/src/pages/Register.jsx
+
 import { useState } from 'react';
 
 import Navbar from '../components/Navbar';
@@ -31,7 +33,7 @@ function Register() {
 
       await fetch(
 
-        'http://localhost:5000/api/auth/register',
+        'https://auction-platform-maef.onrender.com/api/auth/register',
 
         {
           method: 'POST',

@@ -19,7 +19,7 @@ function Dashboard() {
     try {
 
       const res = await fetch(
-        'http://localhost:5000/api/auctions'
+        'https://auction-platform-maef.onrender.com/api/auctions'
       );
 
       const data = await res.json();

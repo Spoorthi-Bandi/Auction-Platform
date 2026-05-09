@@ -1,3 +1,5 @@
+// frontend/src/pages/Login.jsx
+
 import { useState } from 'react';
 
 import Navbar from '../components/Navbar';
@@ -31,7 +33,7 @@ function Login() {
 
       const res = await fetch(
 
-        'http://localhost:5000/api/auth/login',
+        'https://auction-platform-maef.onrender.com/api/auth/login',
 
         {
           method: 'POST',

@@ -1,7 +1,5 @@
 // frontend/src/pages/CreateAuction.jsx
 
-// frontend/src/pages/CreateAuction.jsx
-
 import { useState } from 'react';
 
 import Navbar from '../components/Navbar';
@@ -98,7 +96,7 @@ function CreateAuction() {
 
       await fetch(
 
-        'http://localhost:5000/api/auctions/create',
+        'https://auction-platform-maef.onrender.com/api/auctions/create',
 
         {
           method: 'POST',

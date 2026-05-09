@@ -4,7 +4,9 @@ import { io } from 'socket.io-client';
 
 import Navbar from '../components/Navbar';
 
-const socket = io('http://localhost:5000');
+const socket = io(
+  'https://auction-platform-maef.onrender.com'
+);
 
 function Home() {
 
@@ -39,7 +41,7 @@ function Home() {
     try {
 
       const res = await fetch(
-        'http://localhost:5000/api/auctions'
+        'https://auction-platform-maef.onrender.com/api/auctions'
       );
 
       const data = await res.json();
@@ -87,7 +89,7 @@ function Home() {
 
       await fetch(
 
-        `http://localhost:5000/api/auctions/bid/${id}`,
+        `https://auction-platform-maef.onrender.com/api/auctions/bid/${id}`,
 
         {
           method: 'POST',
