@@ -1,26 +1,20 @@
 // frontend/src/pages/Login.jsx
 
 import { useState } from 'react';
-
 import Navbar from '../components/Navbar';
 
 function Login() {
 
   const [formData, setFormData] = useState({
-
     email: '',
     password: ''
-
   });
 
   const handleChange = (e) => {
 
     setFormData({
-
       ...formData,
-
       [e.target.name]: e.target.value
-
     });
 
   };
@@ -32,20 +26,14 @@ function Login() {
     try {
 
       const res = await fetch(
-
-        'https://auction-platform-maef.onrender.com/api/auth/login',
-
+        'https://auction-backend-n5fu.onrender.com/api/auth/login',
         {
           method: 'POST',
-
           headers: {
             'Content-Type': 'application/json'
           },
-
           body: JSON.stringify(formData)
-
         }
-
       );
 
       const data = await res.json();
@@ -56,7 +44,7 @@ function Login() {
 
         localStorage.setItem('email', formData.email);
 
-        alert('Login successful');
+        alert('Login Successful');
 
         window.location.href = '/';
 
@@ -76,14 +64,14 @@ function Login() {
 
       <Navbar />
 
-      <div className="flex items-center justify-center pt-24">
+      <div className="flex justify-center items-center pt-24">
 
         <form
           onSubmit={handleSubmit}
           className="bg-[#e6efe9] p-10 rounded-3xl shadow-xl w-96"
         >
 
-          <h1 className="text-4xl font-bold mb-8 text-center text-[#344e41]">
+          <h1 className="text-4xl font-bold text-center mb-8 text-[#344e41]">
 
             Login
 
@@ -94,7 +82,7 @@ function Login() {
             name="email"
             placeholder="Email"
             onChange={handleChange}
-            className="w-full border p-4 mb-5 rounded-2xl bg-[#f1f7f2] outline-none"
+            className="w-full p-4 mb-5 rounded-2xl border bg-[#f1f7f2] outline-none"
           />
 
           <input
@@ -102,7 +90,7 @@ function Login() {
             name="password"
             placeholder="Password"
             onChange={handleChange}
-            className="w-full border p-4 mb-5 rounded-2xl bg-[#f1f7f2] outline-none"
+            className="w-full p-4 mb-5 rounded-2xl border bg-[#f1f7f2] outline-none"
           />
 
           <button

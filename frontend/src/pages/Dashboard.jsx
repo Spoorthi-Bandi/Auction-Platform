@@ -19,7 +19,7 @@ function Dashboard() {
     try {
 
       const res = await fetch(
-        'https://auction-platform-maef.onrender.com/api/auctions'
+        'https://auction-backend-n5fu.onrender.com/api/auctions'
       );
 
       const data = await res.json();
@@ -56,7 +56,7 @@ function Dashboard() {
 
       <div className="p-10">
 
-        <h1 className="text-5xl font-bold text-[#344e41] mb-14 text-center">
+        <h1 className="text-5xl font-bold text-center mb-14 text-[#344e41]">
 
           Dashboard
 
@@ -64,9 +64,9 @@ function Dashboard() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
 
-          <div className="bg-[#e6efe9] rounded-3xl shadow-lg p-10 text-center">
+          <div className="bg-[#e6efe9] p-10 rounded-3xl shadow-xl text-center">
 
-            <h2 className="text-2xl font-bold text-[#344e41] mb-5">
+            <h2 className="text-2xl font-bold mb-5 text-[#344e41]">
 
               Total Auctions
 
@@ -80,9 +80,9 @@ function Dashboard() {
 
           </div>
 
-          <div className="bg-[#e6efe9] rounded-3xl shadow-lg p-10 text-center">
+          <div className="bg-[#e6efe9] p-10 rounded-3xl shadow-xl text-center">
 
-            <h2 className="text-2xl font-bold text-[#344e41] mb-5">
+            <h2 className="text-2xl font-bold mb-5 text-[#344e41]">
 
               Live Auctions
 
@@ -96,9 +96,9 @@ function Dashboard() {
 
           </div>
 
-          <div className="bg-[#e6efe9] rounded-3xl shadow-lg p-10 text-center">
+          <div className="bg-[#e6efe9] p-10 rounded-3xl shadow-xl text-center">
 
-            <h2 className="text-2xl font-bold text-[#344e41] mb-5">
+            <h2 className="text-2xl font-bold mb-5 text-[#344e41]">
 
               Ended Auctions
 

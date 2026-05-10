@@ -1,20 +1,17 @@
 // frontend/src/pages/CreateAuction.jsx
 
 import { useState } from 'react';
-
 import Navbar from '../components/Navbar';
 
 function CreateAuction() {
 
   const [formData, setFormData] = useState({
-
     title: '',
     description: '',
     image: null,
     startingPrice: '',
     duration: '',
     category: ''
-
   });
 
   const handleChange = (e) => {
@@ -22,21 +19,15 @@ function CreateAuction() {
     if (e.target.name === 'image') {
 
       setFormData({
-
         ...formData,
-
         image: e.target.files[0]
-
       });
 
     } else {
 
       setFormData({
-
         ...formData,
-
         [e.target.name]: e.target.value
-
       });
 
     }
@@ -64,6 +55,11 @@ function CreateAuction() {
       );
 
       data.append(
+        'currentBid',
+        formData.startingPrice
+      );
+
+      data.append(
         'duration',
         formData.duration
       );
@@ -74,19 +70,11 @@ function CreateAuction() {
       );
 
       data.append(
-        'currentBid',
-        formData.startingPrice
-      );
-
-      data.append(
-
         'endTime',
-
         new Date(
           Date.now() +
           formData.duration * 60 * 1000
         )
-
       );
 
       data.append(
@@ -95,14 +83,11 @@ function CreateAuction() {
       );
 
       await fetch(
-
-        'https://auction-platform-maef.onrender.com/api/auctions/create',
-
+        'https://auction-backend-n5fu.onrender.com/api/auctions/create',
         {
           method: 'POST',
           body: data
         }
-
       );
 
       alert('Auction Created');
@@ -123,14 +108,14 @@ function CreateAuction() {
 
       <Navbar />
 
-      <div className="flex items-center justify-center pt-24 pb-20">
+      <div className="flex justify-center items-center pt-24 pb-20">
 
         <form
           onSubmit={handleSubmit}
           className="bg-[#e6efe9] p-10 rounded-3xl shadow-xl w-96"
         >
 
-          <h1 className="text-4xl font-bold mb-8 text-center text-[#344e41]">
+          <h1 className="text-4xl font-bold text-center mb-8 text-[#344e41]">
 
             Create Auction
 
@@ -141,7 +126,7 @@ function CreateAuction() {
             name="title"
             placeholder="Title"
             onChange={handleChange}
-            className="w-full border p-4 mb-5 rounded-2xl bg-[#f1f7f2] outline-none"
+            className="w-full p-4 mb-5 rounded-2xl border bg-[#f1f7f2] outline-none"
           />
 
           <input
@@ -149,14 +134,14 @@ function CreateAuction() {
             name="description"
             placeholder="Description"
             onChange={handleChange}
-            className="w-full border p-4 mb-5 rounded-2xl bg-[#f1f7f2] outline-none"
+            className="w-full p-4 mb-5 rounded-2xl border bg-[#f1f7f2] outline-none"
           />
 
           <input
             type="file"
             name="image"
             onChange={handleChange}
-            className="w-full border p-4 mb-5 rounded-2xl bg-[#f1f7f2] outline-none"
+            className="w-full p-4 mb-5 rounded-2xl border bg-[#f1f7f2] outline-none"
           />
 
           <input
@@ -164,13 +149,13 @@ function CreateAuction() {
             name="startingPrice"
             placeholder="Starting Price"
             onChange={handleChange}
-            className="w-full border p-4 mb-5 rounded-2xl bg-[#f1f7f2] outline-none"
+            className="w-full p-4 mb-5 rounded-2xl border bg-[#f1f7f2] outline-none"
           />
 
           <select
             name="category"
             onChange={handleChange}
-            className="w-full border p-4 mb-5 rounded-2xl bg-[#f1f7f2] outline-none"
+            className="w-full p-4 mb-5 rounded-2xl border bg-[#f1f7f2] outline-none"
           >
 
             <option value="">
@@ -204,7 +189,7 @@ function CreateAuction() {
             name="duration"
             placeholder="Duration in Minutes"
             onChange={handleChange}
-            className="w-full border p-4 mb-5 rounded-2xl bg-[#f1f7f2] outline-none"
+            className="w-full p-4 mb-5 rounded-2xl border bg-[#f1f7f2] outline-none"
           />
 
           <button
