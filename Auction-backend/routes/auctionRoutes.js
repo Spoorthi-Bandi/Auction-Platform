@@ -1,4 +1,4 @@
-// auction-backend/routes/auctionRoutes.js
+// Auction-backend/routes/auctionRoutes.js
 
 const express = require('express');
 
@@ -137,6 +137,30 @@ router.post('/bid/:id', async (req, res) => {
 
     res.status(500).json({
       message: 'Bid failed'
+    });
+
+  }
+
+});
+
+router.delete('/delete/:id', async (req, res) => {
+
+  try {
+
+    await Auction.findByIdAndDelete(
+      req.params.id
+    );
+
+    res.json({
+      message: 'Auction deleted'
+    });
+
+  } catch (error) {
+
+    console.log(error);
+
+    res.status(500).json({
+      message: 'Delete failed'
     });
 
   }

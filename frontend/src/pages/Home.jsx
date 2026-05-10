@@ -118,6 +118,30 @@ function Home() {
 
   };
 
+  const deleteAuction = async (id) => {
+
+    try {
+
+      await fetch(
+
+        `https://backend-lwbc.onrender.com/api/auctions/delete/${id}`,
+
+        {
+          method: 'DELETE'
+        }
+
+      );
+
+      fetchAuctions();
+
+    } catch (err) {
+
+      console.log(err);
+
+    }
+
+  };
+
   const filteredAuctions = auctions.filter((item) => {
 
     const matchesSearch =
@@ -355,6 +379,20 @@ function Home() {
                 >
 
                   Place Bid +1000
+
+                </button>
+
+                <button
+
+                  onClick={() =>
+                    deleteAuction(item._id)
+                  }
+
+                  className="w-full mt-3 bg-red-500 hover:bg-red-600 text-white py-4 rounded-2xl font-bold transition"
+
+                >
+
+                  Delete Auction
 
                 </button>
 
