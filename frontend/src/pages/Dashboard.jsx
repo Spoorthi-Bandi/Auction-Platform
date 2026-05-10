@@ -19,7 +19,7 @@ function Dashboard() {
     try {
 
       const res = await fetch(
-        'https://auction-backend-n5fu.onrender.com/api/auctions'
+        'https://backend-lwbc.onrender.com/api/auctions'
       );
 
       const data = await res.json();

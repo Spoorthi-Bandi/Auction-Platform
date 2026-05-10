@@ -1,20 +1,26 @@
 // frontend/src/pages/Register.jsx
 
 import { useState } from 'react';
+
 import Navbar from '../components/Navbar';
 
 function Register() {
 
   const [formData, setFormData] = useState({
+
     email: '',
     password: ''
+
   });
 
   const handleChange = (e) => {
 
     setFormData({
+
       ...formData,
+
       [e.target.name]: e.target.value
+
     });
 
   };
@@ -26,14 +32,20 @@ function Register() {
     try {
 
       await fetch(
-        'https://auction-backend-n5fu.onrender.com/api/auth/register',
+
+        'https://backend-lwbc.onrender.com/api/auth/register',
+
         {
           method: 'POST',
+
           headers: {
             'Content-Type': 'application/json'
           },
+
           body: JSON.stringify(formData)
+
         }
+
       );
 
       alert('Registered Successfully');

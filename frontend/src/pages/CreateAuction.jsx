@@ -1,17 +1,20 @@
 // frontend/src/pages/CreateAuction.jsx
 
 import { useState } from 'react';
+
 import Navbar from '../components/Navbar';
 
 function CreateAuction() {
 
   const [formData, setFormData] = useState({
+
     title: '',
     description: '',
     image: null,
     startingPrice: '',
     duration: '',
     category: ''
+
   });
 
   const handleChange = (e) => {
@@ -19,15 +22,21 @@ function CreateAuction() {
     if (e.target.name === 'image') {
 
       setFormData({
+
         ...formData,
+
         image: e.target.files[0]
+
       });
 
     } else {
 
       setFormData({
+
         ...formData,
+
         [e.target.name]: e.target.value
+
       });
 
     }
@@ -83,11 +92,14 @@ function CreateAuction() {
       );
 
       await fetch(
-        'https://auction-backend-n5fu.onrender.com/api/auctions/create',
+
+        'https://backend-lwbc.onrender.com/api/auctions/create',
+
         {
           method: 'POST',
           body: data
         }
+
       );
 
       alert('Auction Created');

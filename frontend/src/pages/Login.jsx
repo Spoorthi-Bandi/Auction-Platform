@@ -1,20 +1,26 @@
 // frontend/src/pages/Login.jsx
 
 import { useState } from 'react';
+
 import Navbar from '../components/Navbar';
 
 function Login() {
 
   const [formData, setFormData] = useState({
+
     email: '',
     password: ''
+
   });
 
   const handleChange = (e) => {
 
     setFormData({
+
       ...formData,
+
       [e.target.name]: e.target.value
+
     });
 
   };
@@ -26,14 +32,20 @@ function Login() {
     try {
 
       const res = await fetch(
-        'https://auction-backend-n5fu.onrender.com/api/auth/login',
+
+        'https://backend-lwbc.onrender.com/api/auth/login',
+
         {
           method: 'POST',
+
           headers: {
             'Content-Type': 'application/json'
           },
+
           body: JSON.stringify(formData)
+
         }
+
       );
 
       const data = await res.json();

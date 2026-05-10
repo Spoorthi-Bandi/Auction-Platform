@@ -1,3 +1,5 @@
+// frontend/src/pages/Home.jsx
+
 import { useEffect, useState } from 'react';
 
 import { io } from 'socket.io-client';
@@ -5,7 +7,7 @@ import { io } from 'socket.io-client';
 import Navbar from '../components/Navbar';
 
 const socket = io(
-  'https://auction-platform-maef.onrender.com'
+  'https://backend-lwbc.onrender.com'
 );
 
 function Home() {
@@ -41,7 +43,7 @@ function Home() {
     try {
 
       const res = await fetch(
-        'https://auction-platform-maef.onrender.com/api/auctions'
+        'https://backend-lwbc.onrender.com/api/auctions'
       );
 
       const data = await res.json();
@@ -89,7 +91,7 @@ function Home() {
 
       await fetch(
 
-        `https://auction-platform-maef.onrender.com/api/auctions/bid/${id}`,
+        `https://backend-lwbc.onrender.com/api/auctions/bid/${id}`,
 
         {
           method: 'POST',
