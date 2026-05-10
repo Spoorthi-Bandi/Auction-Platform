@@ -1,10 +1,38 @@
+// auction-backend/routes/auctionRoutes.js
+
 const express = require('express');
+
+const router = express.Router();
+
+const multer = require('multer');
+
+const cloudinary = require('../config/cloudinary');
 
 const Auction = require('../models/Auction');
 
-const upload = require('../config/upload');
+const storage = multer.diskStorage({});
 
-const router = express.Router();
+const upload = multer({ storage });
+
+router.get('/', async (req, res) => {
+
+  try {
+
+    const auctions = await Auction.find();
+
+    res.json(auctions);
+
+  } catch (error) {
+
+    console.log(error);
+
+    res.status(500).json({
+      message: 'Failed to fetch auctions'
+    });
+
+  }
+
+});
 
 router.post(
 
@@ -16,43 +44,58 @@ router.post(
 
     try {
 
+      const {
+        title,
+        description,
+        startingPrice,
+        currentBid,
+        category,
+        endTime
+      } = req.body;
+
+      let imageUrl = '';
+
+      if (req.file) {
+
+        const result = await cloudinary.uploader.upload(
+          req.file.path
+        );
+
+        imageUrl = result.secure_url;
+
+      }
+
       const auction = new Auction({
 
-        ...req.body,
-
-        image: req.file.path
+        title,
+        description,
+        startingPrice,
+        currentBid,
+        category,
+        endTime,
+        image: imageUrl,
+        highestBidder: 'No Bids Yet',
+        bids: []
 
       });
 
       await auction.save();
 
-      res.json(auction);
+      res.status(201).json(auction);
 
-    } catch (err) {
+    } catch (error) {
 
-      console.log(err);
+      console.log(error);
 
-      res.status(500).json(err);
+      res.status(500).json({
+        message: 'Create auction failed'
+      });
 
     }
 
-});
-
-router.get('/', async (req, res) => {
-
-  try {
-
-    const auctions = await Auction.find();
-
-    res.json(auctions);
-
-  } catch (err) {
-
-    res.status(500).json(err);
-
   }
 
-});
+);
 
 router.post('/bid/:id', async (req, res) => {
 
@@ -74,9 +117,11 @@ router.post('/bid/:id', async (req, res) => {
 
     auction.currentBid = amount;
 
+    auction.highestBidder = 'Current User';
+
     auction.bids.push({
 
-      user: 'demo-user',
+      user: 'Current User',
 
       amount
 
@@ -84,21 +129,15 @@ router.post('/bid/:id', async (req, res) => {
 
     await auction.save();
 
-    req.io.emit('newBid', {
-
-      auctionId: auction._id,
-
-      amount
-
-    });
-
     res.json(auction);
 
-  } catch (err) {
+  } catch (error) {
 
-    console.log(err);
+    console.log(error);
 
-    res.status(500).json(err);
+    res.status(500).json({
+      message: 'Bid failed'
+    });
 
   }
 
