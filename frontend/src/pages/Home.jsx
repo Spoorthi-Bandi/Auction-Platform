@@ -1,9 +1,7 @@
 // frontend/src/pages/Home.jsx
 
 import { useEffect, useState } from 'react';
-
 import { io } from 'socket.io-client';
-
 import Navbar from '../components/Navbar';
 
 const socket = io(
@@ -13,9 +11,7 @@ const socket = io(
 function Home() {
 
   const [auctions, setAuctions] = useState([]);
-
   const [search, setSearch] = useState('');
-
   const [category, setCategory] = useState('');
 
   useEffect(() => {
@@ -202,27 +198,19 @@ function Home() {
           >
 
             <option value="">
-
               All Categories
-
             </option>
 
             <option value="Electronics">
-
               Electronics
-
             </option>
 
             <option value="Fashion">
-
               Fashion
-
             </option>
 
             <option value="Vehicles">
-
               Vehicles
-
             </option>
 
           </select>
@@ -365,36 +353,40 @@ function Home() {
 
                 </div>
 
-                <button
+                <div className="flex gap-3 items-center">
 
-                  onClick={() =>
-                    placeBid(
-                      item._id,
-                      item.currentBid
-                    )
-                  }
+                  <button
 
-                  className="w-full bg-[#84a98c] hover:bg-[#6b9080] text-white py-4 rounded-2xl font-bold transition"
+                    onClick={() =>
+                      placeBid(
+                        item._id,
+                        item.currentBid
+                      )
+                    }
 
-                >
+                    className="flex-1 bg-[#84a98c] hover:bg-[#6b9080] text-white py-4 rounded-2xl font-bold transition"
 
-                  Place Bid +1000
+                  >
 
-                </button>
+                    Place Bid +1000
 
-                <button
+                  </button>
 
-                  onClick={() =>
-                    deleteAuction(item._id)
-                  }
+                  <button
 
-                  className="w-full mt-3 bg-red-500 hover:bg-red-600 text-white py-4 rounded-2xl font-bold transition"
+                    onClick={() =>
+                      deleteAuction(item._id)
+                    }
 
-                >
+                    className="flex items-center justify-center w-14 h-14 rounded-2xl bg-[#cadbcf] hover:bg-[#b7cdbd] transition text-xl"
 
-                  Delete Auction
+                  >
 
-                </button>
+                    🗑️
+
+                  </button>
+
+                </div>
 
               </div>
 
