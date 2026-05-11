@@ -1,7 +1,9 @@
 // frontend/src/pages/Home.jsx
 
 import { useEffect, useState } from 'react';
+
 import { io } from 'socket.io-client';
+
 import Navbar from '../components/Navbar';
 
 const socket = io(
@@ -11,7 +13,9 @@ const socket = io(
 function Home() {
 
   const [auctions, setAuctions] = useState([]);
+
   const [search, setSearch] = useState('');
+
   const [category, setCategory] = useState('');
 
   useEffect(() => {
@@ -167,15 +171,15 @@ function Home() {
 
       <Navbar />
 
-      <div className="p-10">
+      <div className="p-4 md:p-10">
 
-        <h1 className="text-5xl font-extrabold text-center mb-10 text-[#344e41]">
+        <h1 className="text-3xl md:text-5xl font-extrabold text-center mb-10 text-[#344e41]">
 
           Real-Time Auction Platform
 
         </h1>
 
-        <div className="flex justify-center gap-4 mb-10 flex-wrap">
+        <div className="flex flex-col md:flex-row justify-center gap-4 mb-10">
 
           <input
             type="text"
@@ -185,7 +189,7 @@ function Home() {
               setSearch(e.target.value)
             }
 
-            className="w-96 p-3 rounded-2xl border bg-[#f1f7f2] outline-none"
+            className="w-full md:w-96 p-3 rounded-2xl border bg-[#f1f7f2] outline-none"
           />
 
           <select
@@ -194,7 +198,7 @@ function Home() {
               setCategory(e.target.value)
             }
 
-            className="w-64 p-3 rounded-2xl border bg-[#f1f7f2] outline-none"
+            className="w-full md:w-64 p-3 rounded-2xl border bg-[#f1f7f2] outline-none"
           >
 
             <option value="">
@@ -235,7 +239,7 @@ function Home() {
 
               <div className="p-6">
 
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex justify-between items-center mb-4 gap-2">
 
                   <span className="bg-[#a4c3b2] text-[#344e41] px-4 py-1 rounded-full text-sm font-semibold">
 
@@ -243,7 +247,7 @@ function Home() {
 
                   </span>
 
-                  <span className="text-[#588157] font-semibold">
+                  <span className="text-[#588157] font-semibold text-sm md:text-base text-right">
 
                     ⏳ {getTimeLeft(item.endTime)}
 
@@ -251,19 +255,19 @@ function Home() {
 
                 </div>
 
-                <h2 className="text-3xl font-bold mb-3 text-[#344e41]">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3 text-[#344e41]">
 
                   {item.title}
 
                 </h2>
 
-                <p className="text-[#3a5a40] mb-4">
+                <p className="text-[#3a5a40] mb-4 text-sm md:text-base">
 
                   {item.description}
 
                 </p>
 
-                <div className="flex justify-between items-center mb-5">
+                <div className="flex justify-between items-center mb-5 gap-4">
 
                   <div>
 
@@ -273,7 +277,7 @@ function Home() {
 
                     </p>
 
-                    <h3 className="text-3xl font-bold text-[#344e41]">
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#344e41]">
 
                       ₹{item.currentBid}
 
@@ -289,7 +293,7 @@ function Home() {
 
                     </p>
 
-                    <h4 className="font-semibold text-[#344e41]">
+                    <h4 className="font-semibold text-[#344e41] text-sm md:text-base">
 
                       {item.highestBidder || 'No Bids Yet'}
 
@@ -364,7 +368,7 @@ function Home() {
                       )
                     }
 
-                    className="flex-1 bg-[#84a98c] hover:bg-[#6b9080] text-white py-4 rounded-2xl font-bold transition"
+                    className="flex-1 bg-[#84a98c] hover:bg-[#6b9080] text-white py-3 md:py-4 rounded-2xl font-bold transition text-sm md:text-base"
 
                   >
 
@@ -378,7 +382,7 @@ function Home() {
                       deleteAuction(item._id)
                     }
 
-                    className="flex items-center justify-center w-14 h-14 rounded-2xl bg-[#cadbcf] hover:bg-[#b7cdbd] transition text-xl"
+                    className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#cadbcf] hover:bg-[#b7cdbd] transition text-lg md:text-xl"
 
                   >
 
