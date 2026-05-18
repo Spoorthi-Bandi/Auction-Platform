@@ -1,9 +1,7 @@
 // frontend/src/pages/Home.jsx
 
 import { useEffect, useState } from 'react';
-
 import { io } from 'socket.io-client';
-
 import Navbar from '../components/Navbar';
 
 const socket = io(
@@ -13,9 +11,7 @@ const socket = io(
 function Home() {
 
   const [auctions, setAuctions] = useState([]);
-
   const [search, setSearch] = useState('');
-
   const [category, setCategory] = useState('');
 
   useEffect(() => {
@@ -118,7 +114,20 @@ function Home() {
 
   };
 
-  const deleteAuction = async (id) => {
+  const deleteAuction = async (id, owner) => {
+
+    const currentUser =
+      localStorage.getItem('email');
+
+    if (currentUser !== owner) {
+
+      alert(
+        'Only creator can delete this auction'
+      );
+
+      return;
+
+    }
 
     try {
 
@@ -379,7 +388,12 @@ function Home() {
                   <button
 
                     onClick={() =>
-                      deleteAuction(item._id)
+
+                      deleteAuction(
+                        item._id,
+                        item.createdBy
+                      )
+
                     }
 
                     className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#cadbcf] hover:bg-[#b7cdbd] transition text-lg md:text-xl"

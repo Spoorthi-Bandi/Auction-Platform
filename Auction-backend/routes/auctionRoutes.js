@@ -1,4 +1,5 @@
 // Auction-backend/routes/auctionRoutes.js
+// Auction-backend/routes/auctionRoutes.js
 
 const express = require('express');
 
@@ -50,16 +51,18 @@ router.post(
         startingPrice,
         currentBid,
         category,
-        endTime
+        endTime,
+        createdBy
       } = req.body;
 
       let imageUrl = '';
 
       if (req.file) {
 
-        const result = await cloudinary.uploader.upload(
-          req.file.path
-        );
+        const result =
+          await cloudinary.uploader.upload(
+            req.file.path
+          );
 
         imageUrl = result.secure_url;
 
@@ -72,6 +75,7 @@ router.post(
         startingPrice,
         currentBid,
         category,
+        createdBy,
         endTime,
         image: imageUrl,
         highestBidder: 'No Bids Yet',
@@ -101,9 +105,10 @@ router.post('/bid/:id', async (req, res) => {
 
   try {
 
-    const auction = await Auction.findById(
-      req.params.id
-    );
+    const auction =
+      await Auction.findById(
+        req.params.id
+      );
 
     if (!auction) {
 

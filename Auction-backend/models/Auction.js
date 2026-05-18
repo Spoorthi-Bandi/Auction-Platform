@@ -1,3 +1,5 @@
+// Auction-backend/models/Auction.js
+
 const mongoose = require('mongoose');
 
 const bidSchema = new mongoose.Schema({
@@ -24,9 +26,15 @@ const auctionSchema = new mongoose.Schema({
 
   image: String,
 
+  category: String,
+
   startingPrice: Number,
 
   currentBid: Number,
+
+  createdBy: String,
+
+  highestBidder: String,
 
   endTime: Date,
 

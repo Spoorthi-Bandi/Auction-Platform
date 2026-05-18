@@ -1,5 +1,7 @@
 // frontend/src/pages/CreateAuction.jsx
 
+// frontend/src/pages/CreateAuction.jsx
+
 import { useState } from 'react';
 
 import Navbar from '../components/Navbar';
@@ -76,6 +78,11 @@ function CreateAuction() {
       data.append(
         'category',
         formData.category
+      );
+
+      data.append(
+        'createdBy',
+        localStorage.getItem('email')
       );
 
       data.append(
@@ -171,27 +178,19 @@ function CreateAuction() {
           >
 
             <option value="">
-
               Select Category
-
             </option>
 
             <option value="Electronics">
-
               Electronics
-
             </option>
 
             <option value="Fashion">
-
               Fashion
-
             </option>
 
             <option value="Vehicles">
-
               Vehicles
-
             </option>
 
           </select>
